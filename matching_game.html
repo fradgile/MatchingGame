@@ -44,8 +44,9 @@
 
 	<script type="text/javascript">
 		
-		//var the_body = document.getElementById("theBody");
 		var theLeftSide = document.getElementById("leftSide");
+		var leftSideImages;
+		var theRightSide = document.getElementById("rightSide");
 		var numberOfFaces = 5;
 		var maxTop = theLeftSide.clientWidth - 100;
 		var maxLeft = maxTop;
@@ -58,6 +59,10 @@
 	        	img.style.left = Math.floor((Math.random() * maxLeft )) + "px";
 	        	theLeftSide.appendChild(img);
 			};        	
+
+			leftSideImages = theLeftSide.cloneNode(true);
+			leftSideImages.removeChild(leftSideImages.lastChild);
+			theRightSide.appendChild(leftSideImages);
 		};
 
 	</script>
