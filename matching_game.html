@@ -37,13 +37,8 @@
 
 	<div id="rightSide"></div>	
 
-	
-
-
-
-
 	<script type="text/javascript">
-		
+		var theBody = document.getElementById("theBody");
 		var theLeftSide = document.getElementById("leftSide");
 		var leftSideImages;
 		var theRightSide = document.getElementById("rightSide");
@@ -52,6 +47,15 @@
 		var maxLeft = maxTop;
 
 		function generateFaces(p_numberOfFaces){
+
+			while (theLeftSide.firstChild) {
+    			theLeftSide.removeChild(theLeftSide.firstChild);
+			};
+			
+			while (theRightSide.firstChild) {
+    			theRightSide.removeChild(theRightSide.firstChild);
+			};
+
 			for (var i = 0; i < numberOfFaces; i++) {
 				var img = document.createElement("img");
 				img.src = "smile.png";
@@ -63,6 +67,18 @@
 			leftSideImages = theLeftSide.cloneNode(true);
 			leftSideImages.removeChild(leftSideImages.lastChild);
 			theRightSide.appendChild(leftSideImages);
+
+			theLeftSide.lastChild.onclick = function nextLevel(event){
+														event.stopPropagation();
+														numberOfFaces += 5;
+														generateFaces(numberOfFaces);
+											};
+			theBody.onclick = 	function gameOver() {
+										alert("Game Over!");
+										theBody.onclick = null;
+										theLeftSide.lastChild.onclick = null;
+								}; 
+
 		};
 
 	</script>
